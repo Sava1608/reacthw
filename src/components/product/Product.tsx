@@ -7,9 +7,11 @@ const Product:FC<IProducts> = ({id, title, description, category, price, discoun
         <div className={'Product'}>
             <h3>ID:{id} {title}</h3>
             <h3>Category: {category}</h3>
+            <div className="IMG">
             {
                 images.map((value,index) => <img key={index} src={value} alt='#'/>)
             }
+            </div>
             <p>{description}</p>
             <h1>Price:{price} Rating:{rating}* | {discountPercentage}%</h1>
             <ul>
@@ -52,9 +54,14 @@ const Product:FC<IProducts> = ({id, title, description, category, price, discoun
                 <li>{meta.createdAt}</li>
                 <li>{meta.updatedAt}</li>
                 <li>{meta.barcode}</li>
-                <img className="QR" src={meta.qrCode} alt='#'/>
+                <div className="IMG">
+                    <img className="QR" src={meta.qrCode} alt='#'/>
+                </div>
             </ul>
-            <img src={thumbnail} alt='#'/>
+            <div className="IMG">
+                <img src={thumbnail} alt='#'/>
+            </div>
+
         </div>
     );
 };
