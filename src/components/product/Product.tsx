@@ -13,7 +13,7 @@ const Product:FC<IProducts> = ({id, title, description, category, price, discoun
             }
             </div>
             <p>{description}</p>
-            <h1>Price:{price} Rating:{rating}* | {discountPercentage}%</h1>
+            <h1>Price:{price}$ Rating:{rating}* | Promotion:{discountPercentage}%</h1>
             <ul>
                 <li>State: {stock}</li>
                 <li>Brand: {brand}</li>
