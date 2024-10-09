@@ -2,9 +2,15 @@ import React, {FC} from 'react';
 import {IProducts} from "../../interfaces/IProducts/IProducts";
 import './Product.css'
 
-const Product:FC<IProducts> = ({id, title, description, category, price, discountPercentage, rating, stock, tags, brand, sku, weight, dimensions, warrantyInformation, shippingInformation, availabilityStatus, reviews, returnPolicy, minimumOrderQuantity, meta, thumbnail, images}) => {
+interface IProps{
+    product:IProducts
+}
+
+const Product:FC<IProps> = ({product}) => {
+    const {id, title, description, category, price, discountPercentage, rating, stock, tags, brand, sku, weight, dimensions, warrantyInformation, shippingInformation, availabilityStatus, reviews, returnPolicy, minimumOrderQuantity, meta, thumbnail, images} = product
+
     return (
-        <div className={'Product'}>
+        <div className={'Product'} key={id}>
             <h3>ID:{id} {title}</h3>
             <h3>Category: {category}</h3>
             <div className="IMG">
