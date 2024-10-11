@@ -5,8 +5,6 @@ import UserComponent from "../UserComponent/UserComponent";
 
 
 
-
-
 const UsersComponent:FC = () => {
 
     const [users, setUsers] = useState<IUsers[]>([]);
@@ -21,6 +19,7 @@ const UsersComponent:FC = () => {
             {
                 users.map((user: IUsers) => <UserComponent key={user.id} user={user}/>)
             }
+
         </div>
     );
 };

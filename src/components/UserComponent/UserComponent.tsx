@@ -1,30 +1,19 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {IUsers} from "../../interfaces/IUsersProps/IUsers";
-import {getPosts} from "../../services/api.service";
 import {IPosts} from "../../interfaces/IPostsProps/IPosts";
+import {getPosts} from "../../services/api.service";
 import PostsComponent from "../PostsComponent/PostsComponent";
+import "./UserComponent.css"
 
 interface IProps {
-    user: IUsers
+    user: IUsers,
 }
 
 const UserComponent: FC<IProps> = ({user}) => {
-    const [postId, setPostId] = useState<number>(0);
     const [posts, setPosts] = useState<IPosts[]>([]);
-
-    useEffect(() => {
-        if (postId !== 0) {
-            getPosts(postId).then((value) => {
-                setPosts(value);
-            });
-        }
-    }, [postId]);
-
-    const handleClick = (id: number) => {
-        setPostId(id);
-    };
-
-    console.log(posts); // Лог для перевірки, чи приходять пости
+    const lift = async (id:number) => {
+        setPosts(await getPosts(id));
+    }
 
     const {
         id, firstName, lastName, maidenName, age, gender, email, phone, username, password, birthDate,
@@ -38,10 +27,10 @@ const UserComponent: FC<IProps> = ({user}) => {
                 <img src={image} alt={'#'} /> {id}. Name: {firstName} {lastName} {maidenName} BirthDate: {birthDate}
             </div>
             <div className={'data-user'}>Age: {age} Gender: {gender} Eye: {eyeColor} Hair: {hair.color}{hair.type} Email@: {email} Phone: {phone} University {university}</div>
-            <div className={'login-password'}>UserName: {username} Password: {password}</div>
+            <div className={'login-password'}>UserName: {username} | Password: {password}</div>
             <div className={'health'}>BloodGroup: {bloodGroup} Height: {height} Weight: {weight}</div>
-            <div>
-                <ul className={'location'}>
+            <div className={'location'}>
+                <ul>
                     <p>Address and Location</p>
                     <li>IP: {ip}</li>
                     <li>{address.address}</li>
@@ -58,8 +47,8 @@ const UserComponent: FC<IProps> = ({user}) => {
                     <li>{macAddress}</li>
                 </ul>
             </div>
-            <div>
-                <ul className={'bank'}>
+            <div className={'bank'}>
+                <ul>
                     <p>User Bank</p>
                     <li>CardExpire: {bank.cardExpire}</li>
                     <li>CardNumber: {bank.cardNumber}</li>
@@ -68,8 +57,8 @@ const UserComponent: FC<IProps> = ({user}) => {
                     <li>IBAN: {bank.iban}</li>
                 </ul>
             </div>
-            <div>
-                <ul className={'company'}>
+            <div className={'company'}>
+                <ul>
                     <p>User Job</p>
                     <li>{company.department}</li>
                     <li>{company.name}</li>
@@ -87,24 +76,22 @@ const UserComponent: FC<IProps> = ({user}) => {
                     <li>{company.address.country}</li>
                 </ul>
             </div>
-            <div>Ein: {ein}</div>
-            <div>Snn: {ssn}</div>
-            <div>UserAgent: {userAgent}</div>
-            <div>
-                <ul className={'crypto'}>
+            <div className={'one'}>Ein: {ein}</div>
+            <div className={'two'}>Snn: {ssn}</div>
+            <div className={'three'}>UserAgent: {userAgent}</div>
+            <div className={'crypto'}>
+                <ul>
                     <p>Crypto:</p>
                     <li>{crypto.coin}</li>
                     <li>{crypto.network}</li>
                     <li>{crypto.wallet}</li>
                 </ul>
             </div>
-            <div>Role: {role}</div>
-            <button onClick={() => handleClick(user.id)}>Posts</button>
-            {
-                posts.map((post: IPosts, index) => (
-                    <PostsComponent key={index} post={post} handleClick={handleClick} /> // Передаємо окремий пост
-                ))
-            }
+            <div className={'role'}>Role: {role}</div>
+            <button className={'button'} onClick={() =>{
+                lift(user.id);
+            }}>Posts of user</button>
+            <PostsComponent post={posts}/>
         </div>
     );
 };

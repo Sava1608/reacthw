@@ -18,8 +18,8 @@ const PostComponent:FC<IProps> = ({post}) => {
                 <li>Tags: {tags}</li>
                 <ul>
                     <p>Reactions:</p>
-                    <li>Likes: {reactions.likes}</li>
-                    <li>Dislikes: {reactions.dislikes}</li>
+                    <li>Likes =D: {reactions.likes}</li>
+                    <li>Dislikes D=: {reactions.dislikes}</li>
                 </ul>
                 <li>Views: {views}</li>
                 <li>UserID: {userId}</li>

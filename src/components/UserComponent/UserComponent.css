@@ -1,0 +1,30 @@
+.name-user, .data-user, .login-password, .health, .location, .bank, .company, .one, .two, .three, .crypto, .role{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 20px;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, darkviolet, red) border-box;
+    animation: rotate-border 3s linear infinite;
+}
+img{
+    height: 60px;
+    width: 60px;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 5px;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, silver, black) border-box;
+
+}
+ul{
+    border: 3px solid transparent;
+    border-radius: 10px;
+    padding: 20px;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, black, red) border-box;
+    animation: rotate-border 3s linear infinite;
+}
