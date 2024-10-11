@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {IPosts} from "../../interfaces/IPostsProps/IPosts";
+import PostComponent from "../PostComponent/PostComponent";
 
-const PostsComponent = () => {
+interface IProps{
+    post:IPosts[]
+}
+
+const PostsComponent:FC<IProps> = ({post}) => {
+
+
     return (
         <div>
-            
+            {
+                post.map((post,index) => <PostComponent key={index} post={post}/>)
+            }
         </div>
     );
 };

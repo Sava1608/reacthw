@@ -3,18 +3,23 @@ import {IUsers} from "../../interfaces/IUsersProps/IUsers";
 import {getUsers} from "../../services/api.service";
 import UserComponent from "../UserComponent/UserComponent";
 
+
+
+
+
 const UsersComponent:FC = () => {
 
     const [users, setUsers] = useState<IUsers[]>([]);
 
     useEffect(() => {
-        getUsers().then((value:IUsers[]) => setUsers(value));
+        getUsers()
+            .then((value:IUsers[]) => setUsers(value));
     }, []);
 
     return (
         <div>
             {
-                users.map((user) => (<UserComponent key={user.id} user={user}/>))
+                users.map((user: IUsers) => <UserComponent key={user.id} user={user}/>)
             }
         </div>
     );
