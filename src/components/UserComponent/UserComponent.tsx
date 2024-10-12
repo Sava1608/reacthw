@@ -1,19 +1,14 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {IUsers} from "../../interfaces/IUsersProps/IUsers";
-import {IPosts} from "../../interfaces/IPostsProps/IPosts";
-import {getPosts} from "../../services/api.service";
-import PostsComponent from "../PostsComponent/PostsComponent";
+
 import "./UserComponent.css"
 
 interface IProps {
     user: IUsers,
+    lift: (id:number) => void
 }
 
-const UserComponent: FC<IProps> = ({user}) => {
-    const [posts, setPosts] = useState<IPosts[]>([]);
-    const lift = async (id:number) => {
-        setPosts(await getPosts(id));
-    }
+const UserComponent: FC<IProps> = ({user,lift}) => {
 
     const {
         id, firstName, lastName, maidenName, age, gender, email, phone, username, password, birthDate,
@@ -91,7 +86,6 @@ const UserComponent: FC<IProps> = ({user}) => {
             <button className={'button'} onClick={() =>{
                 lift(user.id);
             }}>Posts of user</button>
-            <PostsComponent post={posts}/>
         </div>
     );
 };
